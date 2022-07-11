@@ -21,7 +21,7 @@ def get_info(order_name):
     descriptions_order = driver.find_elements(By.CLASS_NAME, "aim")
     prices_order = driver.find_elements(By.XPATH, "//div[@title='Ставка']")
     for n in range(len(clients_order)):
-        print(f"{order_name}\n"
+        print(f"\n{order_name}\n"
               f"клиент: {clients_order[n].text}\n"
               f"заказ от: {dates_order[n].text}\n"
               f"адрес: {addresses_order[n].text}\n"
@@ -37,7 +37,7 @@ url = "https://profi.ru/backoffice/n.php"
 
 # Entering inside the Main page
 try:
-    # Enter page
+    # Enter main page
     driver.get(url=url)
     time.sleep(5)
 
@@ -62,7 +62,7 @@ try:
     # ===========================================
     # Find out href link to pass for enter inside
     chat_order = driver.find_element(By.XPATH, "//*[@id='BO_REACT_MOBILE_TAB_BAR']/nav/a[2]").get_attribute('href')
-    print(chat_order)
+    # print(chat_order)
     time.sleep(5)
 
     # inside chat
@@ -75,7 +75,7 @@ try:
     # ===========================================
     # Find out href link to pass for Waiting Order
     waiting_order = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
-    print(waiting_order)
+    # print(waiting_order)
     time.sleep(5)
 
     # inside chat

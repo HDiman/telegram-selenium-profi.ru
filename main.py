@@ -2,36 +2,12 @@ from seleniumwire import webdriver
 from selenium.webdriver.common.by import By
 import time
 from get_info import *
+from enter_web_page import *
 
 
-# Link to Main Webpage
-url = "https://profi.ru/backoffice/n.php"
-
-# Entering inside the Main page
+enter_page()
 
 try:
-    # Enter main page
-    driver.get(url=url)
-    time.sleep(5)
-
-    # Enter login with phone number
-    login_input = driver.find_element(By.CLASS_NAME, "login-form__input-login")
-    login_input.clear()
-    login_input.send_keys("+79160585921")
-    time.sleep(5)
-    submit_button = driver.find_element(By.CLASS_NAME, "login-form__button").click()
-
-    # Input code instead of password
-    input_code = input("Please input number: ")
-    time.sleep(5)
-    for i in range(4):
-        enter_code = driver.find_element(By.CLASS_NAME, "ui-pin-input")
-        enter_code.send_keys(f"{input_code[i]}")
-        time.sleep(2)
-
-    # Waiting for page downloaded
-    time.sleep(30)
-
     # ===========================================
     # Find out href link to pass for enter inside
     chat_order = driver.find_element(By.XPATH, "//*[@id='BO_REACT_MOBILE_TAB_BAR']/nav/a[2]").get_attribute('href')
@@ -81,6 +57,6 @@ except Exception as ex:
     print(ex)
 
 
-# finally:
-#     driver.close()
-#     driver.quit()
+finally:
+    driver.close()
+    driver.quit()

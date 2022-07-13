@@ -19,7 +19,6 @@ try:
             if order not in working_list:
                 working_list.append(order)
                 print(" ... working order added to list ...")
-
             else:
                 print(" ... working order is in a list ... ")
         print(working_list)

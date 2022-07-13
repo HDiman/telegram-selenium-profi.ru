@@ -1,14 +1,4 @@
-from seleniumwire import webdriver
-from selenium.webdriver.common.by import By
-import time
-
-# Path to chromedriver
-chrome_driver_path = "/Users/dsannikov/Documents/GitHub/ParsingPages/telegram-selenium-profi.ru/driver/chromedriver"
-# Options
-options = webdriver.ChromeOptions()
-options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36")
-# Creating Driver Object
-driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
+from enter_profi import *
 
 
 # Getting information about orders
@@ -29,3 +19,35 @@ def get_info(order_name):
         if order_name == "-- В работе --":
             print(f"стоимость заказа: {prices_order[n].text}\n")
         time.sleep(5)
+
+
+def working_orders():
+        # ===========================================
+        # Find out href link to enter Working Orders
+        working_orders = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
+        # print(working_orders)
+        time.sleep(5)
+
+        # inside chat
+        driver.get(url=working_orders)
+        time.sleep(5)
+
+        # Get info about Request Orders
+        get_info("-- В работе --")
+
+
+def open_orders():
+        # ===========================================
+        # Find out href link to enter Open Orders
+        open_orders = driver.find_element(By.ID, "js-tab-orders-repls").get_attribute('href')
+        # print(open_orders)
+        time.sleep(5)
+
+        # inside chat
+        driver.get(url=open_orders)
+        time.sleep(5)
+
+        # Get out info about Open Orders
+        get_info("-- Открытые ордера --")
+
+        # ===========================================

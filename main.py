@@ -24,9 +24,18 @@ try:
                 print(" ... working order is in a list ... ")
 
 
-    # ===========================================
+        # ===========================================
         # Info about Open Orders
-        # open_save = open_orders()
+        open_temp = open_orders()
+
+        for order in open_temp:
+            if order not in open_list:
+                open_list.append(order)
+                print(" ... open order added to list ...")
+                print(open_list)
+            else:
+                print(" ... open order is in a list ... ")
+
         # ===========================================
 
         time.sleep(120)

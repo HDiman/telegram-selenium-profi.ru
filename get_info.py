@@ -10,16 +10,16 @@ def get_info(order_name):
     subjects_order = driver.find_elements(By.CLASS_NAME, "subjects")
     descriptions_order = driver.find_elements(By.CLASS_NAME, "aim")
     prices_order = driver.find_elements(By.XPATH, "//div[@title='Ставка']")
-    for n in range(len(clients_order)):
-        print(f"\n{order_name}\n"
-              f"клиент: {clients_order[n].text}\n"
-              f"заказ от: {dates_order[n].text}\n"
-              f"адрес: {addresses_order[n].text}\n"
-              f"тема: {subjects_order[n].text}\n"
-              f"проблема: {descriptions_order[n].text}")
-        if order_name == "-- В работе --":
-            print(f"стоимость заказа: {prices_order[n].text}\n")
-        time.sleep(5)
+    # for n in range(len(clients_order)):
+    #     print(f"\n{order_name}\n"
+    #           f"клиент: {clients_order[n].text}\n"
+    #           f"заказ от: {dates_order[n].text}\n"
+    #           f"адрес: {addresses_order[n].text}\n"
+    #           f"тема: {subjects_order[n].text}\n"
+    #           f"проблема: {descriptions_order[n].text}")
+    #     if order_name == "-- В работе --":
+    #         print(f"стоимость заказа: {prices_order[n].text}\n")
+    #     time.sleep(5)
 
     for n in range(len(clients_order)):
         order_dict = {
@@ -31,9 +31,8 @@ def get_info(order_name):
             "проблема:": descriptions_order[n].text
             }
         if order_name == "-- В работе --":
-            order_dict = {
-                "стоимость заказа:": prices_order[n].text
-                }
+            order_dict["стоимость заказа:"] = prices_order[n].text
+
     return order_dict
 
 

@@ -8,19 +8,14 @@ try:
         # ===========================================
         # Info about Working Orders
         working_orders()
-
         # ===========================================
         # Info about Open Orders
         open_orders()
-
         # ===========================================
-
         time.sleep(120)
-
 
 except Exception as ex:
     print(ex)
-
 
 finally:
     driver.close()

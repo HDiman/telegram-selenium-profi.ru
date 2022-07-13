@@ -11,6 +11,7 @@ options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)
 driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
 
 
+# Function to enter Main Page
 def enter_web_page():
     # Link to Main Webpage
     url = "https://profi.ru/backoffice/n.php"
@@ -37,6 +38,7 @@ def enter_web_page():
     # Inside Main page -> Waiting for page to be downloaded
     time.sleep(30)
 
+# Function to enter Chat
 def enter_chat():
     # ===========================================
     # Find out href link to enter Chat Navigation

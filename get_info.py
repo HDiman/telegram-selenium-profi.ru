@@ -3,6 +3,7 @@ from enter_profi import *
 
 # Getting information about orders
 def get_info(order_name):
+    order_dict = {}
     clients_order = driver.find_elements(By.CLASS_NAME, "client-info__name")
     dates_order = driver.find_elements(By.CLASS_NAME, "lbl")
     addresses_order = driver.find_elements(By.XPATH, "//div[@title='Район']")
@@ -20,6 +21,21 @@ def get_info(order_name):
             print(f"стоимость заказа: {prices_order[n].text}\n")
         time.sleep(5)
 
+    for n in range(len(clients_order)):
+        order_dict = {
+            "ордер:": order_name,
+            "клиент:": clients_order[n].text,
+            "заказ от:": dates_order[n].text,
+            "адрес:": addresses_order[n].text,
+            "тема:": subjects_order[n].text,
+            "проблема:": descriptions_order[n].text
+            }
+        if order_name == "-- В работе --":
+            order_dict = {
+                "стоимость заказа:": prices_order[n].text
+                }
+    return order_dict
+
 
 def working_orders():
         # ===========================================
@@ -32,8 +48,8 @@ def working_orders():
         driver.get(url=working_orders)
         time.sleep(5)
 
-        # Get info about Request Orders
-        get_info("-- В работе --")
+        # Returning info about Request Orders
+        return get_info("-- В работе --")
 
 
 def open_orders():
@@ -47,7 +63,5 @@ def open_orders():
         driver.get(url=open_orders)
         time.sleep(5)
 
-        # Get out info about Open Orders
-        get_info("-- Открытые ордера --")
-
-        # ===========================================
+        # Returning info from Open Orders
+        return get_info("-- Открытые ордера --")

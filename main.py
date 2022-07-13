@@ -19,10 +19,10 @@ try:
             if order not in working_list:
                 working_list.append(order)
                 print(" ... working order added to list ...")
-                print(working_list)
+
             else:
                 print(" ... working order is in a list ... ")
-
+        print(working_list)
 
         # ===========================================
         # Info about Open Orders
@@ -32,9 +32,9 @@ try:
             if order not in open_list:
                 open_list.append(order)
                 print(" ... open order added to list ...")
-                print(open_list)
             else:
                 print(" ... open order is in a list ... ")
+        print(open_list)
 
         # ===========================================
 

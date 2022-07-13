@@ -3,7 +3,7 @@ from enter_profi import *
 
 # Getting information about orders
 def get_info(order_name):
-    order_dict = {}
+    order_list = []
     clients_order = driver.find_elements(By.CLASS_NAME, "client-info__name")
     dates_order = driver.find_elements(By.CLASS_NAME, "lbl")
     addresses_order = driver.find_elements(By.XPATH, "//div[@title='Район']")
@@ -23,17 +23,17 @@ def get_info(order_name):
 
     for n in range(len(clients_order)):
         order_dict = {
-            "ордер:": order_name,
-            "клиент:": clients_order[n].text,
-            "заказ от:": dates_order[n].text,
-            "адрес:": addresses_order[n].text,
-            "тема:": subjects_order[n].text,
-            "проблема:": descriptions_order[n].text
+            "ордер": order_name,
+            "клиент": clients_order[n].text,
+            "заказ от": dates_order[n].text,
+            "адрес": addresses_order[n].text,
+            "тема": subjects_order[n].text,
+            "проблема": descriptions_order[n].text
             }
         if order_name == "-- В работе --":
-            order_dict["стоимость заказа:"] = prices_order[n].text
-
-    return order_dict
+            order_dict["стоимость заказа"] = prices_order[n].text
+        order_list.append(order_dict)
+    return order_list
 
 
 def working_orders():

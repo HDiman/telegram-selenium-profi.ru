@@ -5,8 +5,8 @@ enter_web_page()
 enter_chat()
 
 # dictionaries to save and to work with data
-working_dict = {}
-open_dict = {}
+working_list = []
+open_list = []
 
 # Main Program
 try:
@@ -15,14 +15,16 @@ try:
         # Info about Working Orders
         working_temp = working_orders()
 
-        if working_temp['адрес:'] not in working_dict.values():
-            working_dict = working_temp
-            print("working order added to dictionary")
-            print(working_dict)
-        else:
-            print(" ... working order is in dictionary ... ")
+        for order in working_temp:
+            if order not in working_list:
+                working_list.append(order)
+                print(" ... working order added to list ...")
+                print(working_list)
+            else:
+                print(" ... working order is in a list ... ")
 
-        # ===========================================
+
+    # ===========================================
         # Info about Open Orders
         # open_save = open_orders()
         # ===========================================

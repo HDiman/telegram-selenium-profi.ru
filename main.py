@@ -1,10 +1,10 @@
 from get_info import *
 
-# functions to open webpages for search
+# Functions to open webpages for search
 enter_web_page()
 enter_chat()
 
-# dictionaries to save and to work with data
+# Lists to save and to work with data
 working_list = []
 open_list = []
 

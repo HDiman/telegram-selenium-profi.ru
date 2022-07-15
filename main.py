@@ -17,7 +17,7 @@ try:
         working_temp = working_orders()
 
         # Here is printing order information in column
-        print_orders(working_temp)
+        display_orders(working_temp)
 
 
         # ===========================================
@@ -25,7 +25,7 @@ try:
         open_temp = open_orders()
 
         # Here is printing order information in column
-        print_orders(open_temp)
+        display_orders(open_temp)
 
         # ===========================================
 

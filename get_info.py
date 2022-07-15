@@ -74,7 +74,7 @@ def open_orders():
 
 
 # From here we send printing info
-def print_orders(order):
+def display_orders(order):
     for lt in range(len(order)):
         for key, value in order[lt].items():
             print(f"{key}: {value}")

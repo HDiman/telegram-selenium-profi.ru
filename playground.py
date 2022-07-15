@@ -11,10 +11,17 @@
 #             print(f"стоимость заказа: {prices_order[n].text}\n")
 #         time.sleep(5)
 
+# for lt in range(len(order)):
+#     for key, value in order[lt].items():
+#         print(f"{key}: {value}")
 
-order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
 
 # print(order)
+
+
+order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
+order_1 = order
+print(order_1)
 
 problem = order[0]['проблема']
 split_problem = problem.split('\n')
@@ -30,11 +37,9 @@ for item in split_problem:
         problem_list.append(item)
 
 order[0]['проблема'] = ' '.join(problem_list)
+order_2 = order
 
-print(order)
 
-for lt in range(len(order)):
-    for key, value in order[lt].items():
-        print(f"{key}: {value}")
-
+if order_2[0]['адрес'] in order_1[0].values():
+    print(order_2[0]['адрес'])
 

@@ -3,7 +3,6 @@ from enter_profi import *
 
 # Getting information about orders
 def get_info(order_name):
-    order_list = []
     clients_order = driver.find_elements(By.CLASS_NAME, "client-info__name")
     dates_order = driver.find_elements(By.CLASS_NAME, "lbl")
     addresses_order = driver.find_elements(By.XPATH, "//div[@title='Район']")
@@ -11,7 +10,8 @@ def get_info(order_name):
     descriptions_order = driver.find_elements(By.CLASS_NAME, "aim")
     prices_order = driver.find_elements(By.XPATH, "//div[@title='Ставка']")
 
-    # This section for Dictionary
+    # This section for Dictionaries in List
+    order_list = []
     for n in range(len(clients_order)):
         order_dict = {
             "ордер": order_name,

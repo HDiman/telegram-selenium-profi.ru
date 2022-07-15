@@ -18,10 +18,13 @@ try:
         for order in working_temp:
             if order not in working_list:
                 working_list.append(order)
-                print(" ... working order added to list ...")
+                print(" ... new working order added to list ...")
             else:
-                print(" ... working order is in a list ... ")
-        print(working_list)
+                print(" ... no new one ... ")
+        # print(working_list)
+
+        # Here is printing order information in column
+        print_orders(working_list)
 
         # ===========================================
         # Info about Open Orders
@@ -30,10 +33,13 @@ try:
         for order in open_temp:
             if order not in open_list:
                 open_list.append(order)
-                print(" ... open order added to list ...")
+                print(" ... new open order added to list ...")
             else:
-                print(" ... open order is in a list ... ")
-        print(open_list)
+                print(" ... no new one ... ")
+        # print(open_list)
+
+        # Here is printing order information in column
+        print_orders(open_list)
 
         # ===========================================
 

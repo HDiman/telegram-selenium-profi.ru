@@ -1,39 +1,40 @@
-dict_1 = {
-    'a': 1,
-    'b': 2
-    }
-
-dict_2 = {
-    'a': 3,
-    'b': 4
-    }
-
-dict_3 = {
-    'a': 5,
-    'b': 6
-}
+# From here we send printing info
+# def print_orders(order):
+#     for n in range(len(order)):
+#         print(f"\n{order[n]['ордер']}\n"
+#               f"клиент: {clients_order[n].text}\n"
+#               f"заказ от: {dates_order[n].text}\n"
+#               f"адрес: {addresses_order[n].text}\n"
+#               f"тема: {subjects_order[n].text}\n"
+#               f"проблема: {descriptions_order[n].text}")
+#         if order_name == "-- В работе --":
+#             print(f"стоимость заказа: {prices_order[n].text}\n")
+#         time.sleep(5)
 
 
-dict_list_1 = []
-# dict_list_all = []
+order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
 
-dict_list_1.append(dict_1)
-dict_list_1.append(dict_2)
-# dict_list_all.append(dict_1)
-# dict_list_all.append(dict_2)
-# dict_list_all.append(dict_3)
+# print(order)
 
-dict_list_all = dict_list_1
+problem = order[0]['проблема']
+split_problem = problem.split('\n')
 
+problem_list = []
+for item in split_problem:
+    split_item = item.split(' ')
+    if 'Марка:' in split_item:
+        order[0]['марка'] = split_item[1].split('.')[0] # split word from '.'
+    elif 'Модель:' in split_item:
+        order[0]['модель'] = split_item[1].split('.')[0] # split word from '.'
+    else:
+        problem_list.append(item)
 
-print(dict_list_1)
-print(dict_list_all)
+order[0]['проблема'] = ' '.join(problem_list)
 
+print(order)
 
+for lt in range(len(order)):
+    for key, value in order[lt].items():
+        print(f"{key}: {value}")
 
-# for item in dict_list_all:
-#     if item in dict_list_1:
-#         print("found")
-#     else:
-#         print("not found")
 

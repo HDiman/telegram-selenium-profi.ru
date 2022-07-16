@@ -75,8 +75,10 @@ def open_orders():
 
 # From here we send printing info
 def display_orders(order):
+    # print("... start ...")
     for lt in range(len(order)):
         for key, value in order[lt].items():
             print(f"{key}: {value}")
         print("\n")
         time.sleep(5)
+    # print("... end ...")

@@ -27,16 +27,16 @@ def enter_web_page():
     time.sleep(5)
     driver.find_element(By.CLASS_NAME, "login-form__button").click()
 
+def enter_code(input_code):
     # Input code instead of password
-    input_code = input("Please input number: ")
+    # input_code = input("Please input number: ")
     time.sleep(5)
     for i in range(4):
         enter_code = driver.find_element(By.CLASS_NAME, "ui-pin-input")
         enter_code.send_keys(f"{input_code[i]}")
         time.sleep(2)
-
     # Inside Main page -> Waiting for page to be downloaded
-    time.sleep(30)
+    time.sleep(10)
 
 # Function to enter Chat
 def enter_chat():

@@ -1,5 +1,24 @@
 from enter_profi import *
 
+# # Functions to open webpages for search
+# enter_web_page()
+# enter_chat()
+
+# # Main Program
+# try:
+#     while True:
+#         # This function gets and print info about open and working orders
+#         info_open_working_orders()
+#
+#
+# except Exception as ex:
+#     print(ex)
+#
+# finally:
+#     driver.close()
+#     driver.quit()
+
+
 # From here we send printing info
 # def print_orders(order):
 #     for n in range(len(order)):

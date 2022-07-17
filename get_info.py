@@ -4,41 +4,45 @@ from enter_profi import *
 # Getting information about orders
 def get_info(order_name):
     clients_order = driver.find_elements(By.CLASS_NAME, "client-info__name")
-    dates_order = driver.find_elements(By.CLASS_NAME, "lbl")
-    addresses_order = driver.find_elements(By.XPATH, "//div[@title='Район']")
-    subjects_order = driver.find_elements(By.CLASS_NAME, "subjects")
-    descriptions_order = driver.find_elements(By.CLASS_NAME, "aim")
-    prices_order = driver.find_elements(By.XPATH, "//div[@title='Ставка']")
+    if clients_order == []:
+        order_list = []
+        pass
+    else:
+        dates_order = driver.find_elements(By.CLASS_NAME, "lbl")
+        addresses_order = driver.find_elements(By.XPATH, "//div[@title='Район']")
+        subjects_order = driver.find_elements(By.CLASS_NAME, "subjects")
+        descriptions_order = driver.find_elements(By.CLASS_NAME, "aim")
+        prices_order = driver.find_elements(By.XPATH, "//div[@title='Ставка']")
 
-    # This section for Dictionaries in List
-    order_list = []
-    for n in range(len(clients_order)):
-        order_dict = {
-            "ордер": order_name,
-            "клиент": clients_order[n].text,
-            "заказ от": dates_order[n].text,
-            "адрес": addresses_order[n].text,
-            "тема": subjects_order[n].text,
-            "проблема": descriptions_order[n].text
-            }
-        if order_name == "-- В работе --":
-            order_dict["стоимость заказа"] = prices_order[n].text
-        order_list.append(order_dict)
+        # This section for Dictionaries in List
+        order_list = []
+        for n in range(len(clients_order)):
+            order_dict = {
+                "ордер": order_name,
+                "клиент": clients_order[n].text,
+                "заказ от": dates_order[n].text,
+                "адрес": addresses_order[n].text,
+                "тема": subjects_order[n].text,
+                "проблема": descriptions_order[n].text
+                }
+            if order_name == "-- В работе --":
+                order_dict["стоимость заказа"] = prices_order[n].text
+            order_list.append(order_dict)
 
-        problem = order_list[n]['проблема']
-        split_problem = problem.split('\n')
+            problem = order_list[n]['проблема']
+            split_problem = problem.split('\n')
 
-        problem_list = []
-        for item in split_problem:
-            split_item = item.split(' ')
-            if 'Марка:' in split_item:
-                order_list[n]['марка'] = split_item[1].split('.')[0] # split word from '.'
-            elif 'Модель:' in split_item:
-                order_list[n]['модель'] = split_item[1].split('.')[0] # split word from '.'
-            else:
-                problem_list.append(item)
+            problem_list = []
+            for item in split_problem:
+                split_item = item.split(' ')
+                if 'Марка:' in split_item:
+                    order_list[n]['марка'] = split_item[1].split('.')[0] # split word from '.'
+                elif 'Модель:' in split_item:
+                    order_list[n]['модель'] = split_item[1].split('.')[0] # split word from '.'
+                else:
+                    problem_list.append(item)
 
-        order_list[n]['проблема'] = ' '.join(problem_list)
+            order_list[n]['проблема'] = ' '.join(problem_list)
 
     return order_list
 

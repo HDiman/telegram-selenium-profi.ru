@@ -79,10 +79,43 @@ def open_orders():
 
 # From here we send printing info
 def display_orders(order):
-    # print("... start ...")
     for lt in range(len(order)):
         for key, value in order[lt].items():
             print(f"{key}: {value}")
         print("\n")
         time.sleep(5)
-    # print("... end ...")
+
+
+def yes_no_open_orders(open_temp):
+    # ===========================================
+    # Info about Open Orders
+    # open_temp = open_orders()
+    if open_temp != []:
+        # Here is printing order information in column
+        # display_orders(open_temp)
+
+        # Trying to find problem in Youtube
+        search_text = open_temp[0]['марка'] + " " + open_temp[0]['модель'] + " " + open_temp[0]['проблема']
+        return search_text
+    else:
+        return "No open orders"
+
+
+def yes_no_working_orders(working_temp):
+    # ===========================================
+    # Info about Working Orders
+    # working_temp = working_orders()
+    if working_temp != []:
+        # Here is printing order information in column
+        # display_orders(working_temp)
+
+        # Trying to find problem in Youtube
+        search_text = working_temp[0]['марка'] + " " + working_temp[0]['модель'] + " " + working_temp[0]['проблема']
+        return search_text
+    else:
+        return "No working orders"
+
+
+# # ===========================================
+# time.sleep(120)
+# print("\n\n... 2 minutes passed ...\n\n")

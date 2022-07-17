@@ -1,45 +1,76 @@
 from get_info import *
+import telebot
+from auth_data import token
+
 
 # Functions to open webpages for search
 enter_web_page()
 enter_chat()
 
-# Main Program
-try:
+# # Main Program
+# try:
+#     while True:
+#         # This function gets and print info about open and working orders
+#         info_open_working_orders()
+#
+#
+# except Exception as ex:
+#     print(ex)
+#
+# finally:
+#     driver.close()
+#     driver.quit()
+
+
+def telegram_bot(token):
+    bot = telebot.TeleBot(token)
+
+    @bot.message_handler(commands=['start'])
+    def start_message(message):
+        bot.send_message(message.chat.id, "Работаем")
+
+    @bot.message_handler(content_types=['text'])
+    def send_text(message):
+        if message.text.lower() == 'o':
+            try:
+                open_temp = open_orders()
+                open_reply = yes_no_open_orders(open_temp)
+                bot.send_message(message.chat.id, f"{open_reply}")
+                print(open_reply)
+
+                if open_reply != "No open orders":
+                    for lt in range(len(open_temp)):
+                        for key, value in open_temp[lt].items():
+                            bot.send_message(message.chat.id, f"{key}: {value}")
+                            print(f"{key}: {value}")
+                        time.sleep(5)
+
+
+                working_temp = working_orders()
+                working_reply = yes_no_working_orders(working_temp)
+                bot.send_message(message.chat.id, f"{working_reply}")
+                print(working_reply)
+
+                if working_reply != "No working orders":
+                    for lt in range(len(working_temp)):
+                        for key, value in working_temp[lt].items():
+                            bot.send_message(message.chat.id, f"{key}: {value}")
+                            print(f"{key}: {value}")
+                        time.sleep(5)
+
+
+            except Exception as ex:
+                print(ex)
+                bot.send_message(message.chat.id, "Error!!!")
+        else:
+            bot.send_message(message.chat.id, "I like myself!")
     while True:
-        # ===========================================
-        # Info about Open Orders
-        open_temp = open_orders()
-        if open_temp != []:
-            # Here is printing order information in column
-            display_orders(open_temp)
-
-            # Trying to find problem in Youtube
-            search_text = open_temp[0]['марка'] + " " + open_temp[0]['проблема']
-            print(search_text)
-        else:
-            print("No open orders")
-        # ===========================================
-        # Info about Working Orders
-        working_temp = working_orders()
-        if working_temp != []:
-            # Here is printing order information in column
-            display_orders(working_temp)
-
-            # Trying to find problem in Youtube
-            search_text = working_temp[0]['марка'] + " " + working_temp[0]['модель'] + " " + working_temp[0]['проблема']
-            print(search_text)
-        else:
-            print("No working orders")
-
-        # ===========================================
-        time.sleep(120)
-        print("\n\n... 2 minutes passed ...\n\n")
+        try:
+            bot.polling(none_stop=True)
+        except Exception as e:
+            print(e)
+            time.sleep(60)
 
 
-except Exception as ex:
-    print(ex)
-
-finally:
-    driver.close()
-    driver.quit()
+if __name__ == "__main__":
+    telegram_bot(token=token)

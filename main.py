@@ -27,7 +27,7 @@ try:
             display_orders(working_temp)
 
             # Trying to find problem in Youtube
-            search_text = working_temp[0]['марка'] + " " + working_temp[0]['проблема']
+            search_text = working_temp[0]['марка'] + " " + working_temp[0]['модель'] + " " + working_temp[0]['проблема']
             print(search_text)
         else:
             print("No working orders")

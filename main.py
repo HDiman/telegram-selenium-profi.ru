@@ -22,7 +22,7 @@ def telegram_bot(token):
             try:
                 open_temp = open_orders()
                 if open_temp == []:
-                    bot.send_message(message.chat.id, "Нет открытых ордеров")
+                    bot.send_message(message.chat.id, "-- Нет ордеров чата: -- ОТКРЫТЫЕ --")
                 else:
                     for n in range(len(open_temp)):
                         for key, value in open_temp[n].items():
@@ -31,7 +31,7 @@ def telegram_bot(token):
 
                 working_temp = working_orders()
                 if working_temp == []:
-                    bot.send_message(message.chat.id, "Нет ордеров в работе")
+                    bot.send_message(message.chat.id, "-- Нет ордеров чата: -- В РАБОТЕ --")
                 else:
                     for n in range(len(working_temp)):
                         for key, value in working_temp[n].items():

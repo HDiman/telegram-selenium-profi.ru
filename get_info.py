@@ -18,9 +18,9 @@ def get_info(order_name):
         order_list = []
         for n in range(len(clients_order)):
             order_dict = {
-                "ордер": order_name,
+                "чат": order_name,
                 "клиент": clients_order[n].text,
-                "заказ от": dates_order[n].text,
+                "когда": dates_order[n].text,
                 "адрес": addresses_order[n].text,
                 "тема": subjects_order[n].text,
                 "проблема": descriptions_order[n].text
@@ -33,16 +33,21 @@ def get_info(order_name):
             split_problem = problem.split('\n')
 
             problem_list = []
+
             for item in split_problem:
                 split_item = item.split(' ')
                 if 'Марка:' in split_item:
                     order_list[n]['марка'] = split_item[1].split('.')[0] # split word from '.'
                 elif 'Модель:' in split_item:
-                    order_list[n]['модель'] = split_item[1].split('.')[0] # split word from '.'
+                    order_list[n]['марка'] = order_list[n]['марка'] + " " + split_item[1].split('.')[0] # split word from '.'
                 else:
                     problem_list.append(item)
 
             order_list[n]['проблема'] = ' '.join(problem_list)
+            if order_list[n]['проблема'] == []:
+                order_list[n]['проблема'] = order_list[n]['тема']
+
+            order_list[n]['youtube'] = order_list[n]['марка'] + " " + order_list[n]['проблема']
 
     return order_list
 
@@ -86,34 +91,34 @@ def display_orders(order):
         time.sleep(5)
 
 
-def yes_no_open_orders(open_temp):
-    # ===========================================
-    # Info about Open Orders
-    # open_temp = open_orders()
-    if open_temp != []:
-        # Here is printing order information in column
-        # display_orders(open_temp)
-
-        # Trying to find problem in Youtube
-        search_text = open_temp[0]['марка'] + " " + open_temp[0]['модель'] + " " + open_temp[0]['проблема']
-        return search_text
-    else:
-        return "No open orders"
-
-
-def yes_no_working_orders(working_temp):
-    # ===========================================
-    # Info about Working Orders
-    # working_temp = working_orders()
-    if working_temp != []:
-        # Here is printing order information in column
-        # display_orders(working_temp)
-
-        # Trying to find problem in Youtube
-        search_text = working_temp[0]['марка'] + " " + working_temp[0]['модель'] + " " + working_temp[0]['проблема']
-        return search_text
-    else:
-        return "No working orders"
+# def yes_no_open_orders(open_temp):
+#     # ===========================================
+#     # Info about Open Orders
+#     # open_temp = open_orders()
+#     if open_temp != []:
+#         # Here is printing order information in column
+#         # display_orders(open_temp)
+#
+#         # Trying to find problem in Youtube
+#         search_text = open_temp[0]['марка'] + " " + open_temp[0]['модель'] + " " + open_temp[0]['проблема']
+#         return search_text
+#     else:
+#         return "No open orders"
+#
+#
+# def yes_no_working_orders(working_temp):
+#     # ===========================================
+#     # Info about Working Orders
+#     # working_temp = working_orders()
+#     if working_temp != []:
+#         # Here is printing order information in column
+#         # display_orders(working_temp)
+#
+#         # Trying to find problem in Youtube
+#         search_text = working_temp[0]['марка'] + " " + working_temp[0]['модель'] + " " + working_temp[0]['проблема']
+#         return search_text
+#     else:
+#         return "No working orders"
 
 
 # # ===========================================

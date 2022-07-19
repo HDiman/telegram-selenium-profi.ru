@@ -2,6 +2,50 @@
 # import json
 
 
+# # From here we send printing info
+# def display_orders(order):
+#     for lt in range(len(order)):
+#         for key, value in order[lt].items():
+#             print(f"{key}: {value}")
+#         print("\n")
+#         time.sleep(5)
+
+
+# def yes_no_open_orders(open_temp):
+#     # ===========================================
+#     # Info about Open Orders
+#     # open_temp = open_orders()
+#     if open_temp != []:
+#         # Here is printing order information in column
+#         # display_orders(open_temp)
+#
+#         # Trying to find problem in Youtube
+#         search_text = open_temp[0]['марка'] + " " + open_temp[0]['модель'] + " " + open_temp[0]['проблема']
+#         return search_text
+#     else:
+#         return "No open orders"
+#
+#
+# def yes_no_working_orders(working_temp):
+#     # ===========================================
+#     # Info about Working Orders
+#     # working_temp = working_orders()
+#     if working_temp != []:
+#         # Here is printing order information in column
+#         # display_orders(working_temp)
+#
+#         # Trying to find problem in Youtube
+#         search_text = working_temp[0]['марка'] + " " + working_temp[0]['модель'] + " " + working_temp[0]['проблема']
+#         return search_text
+#     else:
+#         return "No working orders"
+
+
+# # ===========================================
+# time.sleep(120)
+# print("\n\n... 2 minutes passed ...\n\n")
+
+
 # for n in range(len(open_temp)):
 #     for key, value in open_temp[n].items():
 #         bot.send_message(message.chat.id, f"{key}: {value}")
@@ -81,6 +125,12 @@
 #
 # driver.find_element(By.ID, "search-icon-legacy").click()
 
+# str_line = ''
+# for item in order_3:
+#     tpl = " ".join(item)
+#     str_line = str_line + tpl + '\n'
+#
+# print(str_line)
 
 
 order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
@@ -108,17 +158,18 @@ order_2 = order
 # if order_2[0]['адрес'] in order_1[0].values():
 #     print(order_2[0]['адрес'])
 
-search_text = order_2[0]['проблема'] + " " + order_2[0]['марка'] + " " + order_2[0]['модель']
-# search_text = search_text.split('.')
-# print(search_text)
+def two_items():
+    search_text = order_2[0]['проблема'] + " " + order_2[0]['марка'] + " " + order_2[0]['модель']
+    # search_text = search_text.split('.')
+    print(search_text)
 
-order_3 = list(order_2[0].items())
-# order_4 = " ".join(order_3)
-# print(order_3)
+    order_3 = list(order_2[0].items())
+    # order_4 = " ".join(order_3)
+    print(order_3)
+    return order_3, search_text
 
-str_line = ''
-for item in order_3:
-    tpl = " ".join(item)
-    str_line = str_line + tpl + '\n'
+two = two_items()
 
-print(str_line)
+print(two)
+print(two[0])
+print(two[1])

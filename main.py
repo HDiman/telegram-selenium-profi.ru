@@ -22,21 +22,31 @@ def telegram_bot(token):
             try:
                 open_temp = open_orders()
                 if open_temp == []:
-                    bot.send_message(message.chat.id, "-- Нет ордеров чата: -- ОТКРЫТЫЕ --")
+                    bot.send_message(message.chat.id, "-- Нет ордеров: -- ОТКРЫТЫЕ --")
+                    print("-- Нет ордеров: -- ОТКРЫТЫЕ --")
                 else:
                     for n in range(len(open_temp)):
-                        for key, value in open_temp[n].items():
-                            bot.send_message(message.chat.id, f"{key}: {value}")
-                            print(f"{key}: {value}")
+                        open_temp_2 = list(open_temp[n].items())
+                        open_temp_3 = ''
+                        for item in open_temp_2:
+                            tpl = " ".join(item)
+                            open_temp_3 = open_temp_3 + tpl + '\n'
+
+                        bot.send_message(message.chat.id, f"{open_temp_3}")
+                        print(open_temp_3)
+
+
 
                 working_temp = working_orders()
                 if working_temp == []:
-                    bot.send_message(message.chat.id, "-- Нет ордеров чата: -- В РАБОТЕ --")
+                    bot.send_message(message.chat.id, "-- Нет ордеров: -- В РАБОТЕ --")
+                    print("-- Нет ордеров: -- В РАБОТЕ --")
                 else:
-                    for n in range(len(working_temp)):
-                        for key, value in working_temp[n].items():
-                            bot.send_message(message.chat.id, f"{key}: {value}")
-                            print(f"{key}: {value}")
+                    pass
+                    # for n in range(len(working_temp)):
+                    #     for key, value in working_temp[n].items():
+                    #         bot.send_message(message.chat.id, f"{key}: {value}")
+                    #         print(f"{key}: {value}")
 
             except Exception as ex:
                 print(ex)

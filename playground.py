@@ -1,5 +1,11 @@
-from enter_profi import *
-import json
+# from enter_profi import *
+# import json
+
+
+# for n in range(len(open_temp)):
+#     for key, value in open_temp[n].items():
+#         bot.send_message(message.chat.id, f"{key}: {value}")
+#         print(f"{key}: {value}")
 
 
 # # Functions to open webpages for search
@@ -79,7 +85,7 @@ import json
 
 order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
 order_1 = order
-print(order_1)
+# print(order_1)
 
 problem = order[0]['проблема']
 split_problem = problem.split('\n')
@@ -97,15 +103,22 @@ for item in split_problem:
 order[0]['проблема'] = ' '.join(problem_list)
 order_2 = order
 
-print(order_2)
+# print(order_2)
 
 # if order_2[0]['адрес'] in order_1[0].values():
 #     print(order_2[0]['адрес'])
 
 search_text = order_2[0]['проблема'] + " " + order_2[0]['марка'] + " " + order_2[0]['модель']
 # search_text = search_text.split('.')
-print(search_text)
+# print(search_text)
 
-order_3 = json.dumps(order_2)
+order_3 = list(order_2[0].items())
+# order_4 = " ".join(order_3)
+# print(order_3)
 
-print(order_3)
+str_line = ''
+for item in order_3:
+    tpl = " ".join(item)
+    str_line = str_line + tpl + '\n'
+
+print(str_line)

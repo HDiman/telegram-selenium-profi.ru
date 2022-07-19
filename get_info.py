@@ -18,18 +18,18 @@ def get_info(order_name):
         order_list = []
         for n in range(len(clients_order)):
             order_dict = {
-                "чат": order_name,
-                "клиент": clients_order[n].text,
-                "когда": dates_order[n].text,
-                "адрес": addresses_order[n].text,
-                "тема": subjects_order[n].text,
-                "проблема": descriptions_order[n].text
+                "чат:": order_name,
+                "клиент:": clients_order[n].text,
+                "когда:": dates_order[n].text,
+                "адрес:": addresses_order[n].text,
+                "тема:": subjects_order[n].text,
+                "проблема:": descriptions_order[n].text
                 }
             if order_name == "-- В работе --":
-                order_dict["стоимость заказа"] = prices_order[n].text
+                order_dict["стоимость заказа:"] = prices_order[n].text
             order_list.append(order_dict)
 
-            problem = order_list[n]['проблема']
+            problem = order_list[n]['проблема:']
             split_problem = problem.split('\n')
 
             problem_list = []
@@ -37,17 +37,19 @@ def get_info(order_name):
             for item in split_problem:
                 split_item = item.split(' ')
                 if 'Марка:' in split_item:
-                    order_list[n]['марка'] = split_item[1].split('.')[0] # split word from '.'
+                    order_list[n]['марка:'] = split_item[1].split('.')[0] # split word from '.'
                 elif 'Модель:' in split_item:
-                    order_list[n]['марка'] = order_list[n]['марка'] + " " + split_item[1].split('.')[0] # split word from '.'
+                    order_list[n]['марка:'] = order_list[n]['марка:'] + " " + split_item[1].split('.')[0] # split word from '.'
                 else:
                     problem_list.append(item)
 
-            order_list[n]['проблема'] = ' '.join(problem_list)
-            if order_list[n]['проблема'] == []:
-                order_list[n]['проблема'] = order_list[n]['тема']
+            order_list[n]['проблема:'] = ' '.join(problem_list)
+            if order_list[n]['проблема:'] == []:
+                order_list[n]['проблема:'] = order_list[n]['тема:']
 
-            order_list[n]['youtube'] = order_list[n]['марка'] + " " + order_list[n]['проблема']
+
+
+            order_list[n]['youtube:'] = order_list[n]['марка:'] + " " + order_list[n]['проблема:']
 
     return order_list
 

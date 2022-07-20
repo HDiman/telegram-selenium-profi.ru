@@ -1,9 +1,8 @@
 from enter_profi import *
 
 
-# Getting information about orders
 def get_info(order_name):
-    # global search_list
+    # Getting information about orders
     clients_order = driver.find_elements(By.CLASS_NAME, "client-info__name")
     if clients_order == []:
         order_list = []
@@ -17,7 +16,7 @@ def get_info(order_name):
 
         # This section for Dictionaries in List
         order_list = []
-        # search_list = []
+
         for n in range(len(clients_order)):
             order_dict = {
                 "чат:": order_name,
@@ -49,22 +48,18 @@ def get_info(order_name):
             if order_list[n]['проблема:'] == []:
                 order_list[n]['проблема:'] = order_list[n]['тема:']
 
-
-            # search_list[n] = order_list[n]['марка:'] + " " + order_list[n]['проблема:']
-
     return order_list
 
 
 def working_orders():
-        # ===========================================
         # Find out href link to enter Working Orders
         working_orders = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
         # print(working_orders)
-        time.sleep(5)
+        time.sleep(3)
 
         # inside chat
         driver.get(url=working_orders)
-        time.sleep(5)
+        time.sleep(3)
 
         # Returning info about Request Orders
         return get_info("-- В работе --")
@@ -74,11 +69,11 @@ def open_orders():
         # Find out href link to enter Open Orders
         open_orders = driver.find_element(By.ID, "js-tab-orders-repls").get_attribute('href')
         # print(open_orders)
-        time.sleep(5)
+        time.sleep(3)
 
         # inside chat
         driver.get(url=open_orders)
-        time.sleep(5)
+        time.sleep(3)
 
         # Returning info from Open Orders
         return get_info("-- Открытые ордера --")

@@ -26,7 +26,7 @@ def get_info(order_name):
                 "тема:": subjects_order[n].text,
                 "проблема:": descriptions_order[n].text
                 }
-            if order_name == "-- В работе --":
+            if order_name == "-- В работе --" and prices_order != []:
                 order_dict["стоимость заказа:"] = prices_order[n].text
             order_list.append(order_dict)
 
@@ -51,29 +51,30 @@ def get_info(order_name):
     return order_list
 
 
-def working_orders():
-        # Find out href link to enter Working Orders
-        working_orders = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
-        # print(working_orders)
-        time.sleep(3)
-
-        # inside chat
-        driver.get(url=working_orders)
-        time.sleep(3)
-
-        # Returning info about Request Orders
-        return get_info("-- В работе --")
-
-
 def open_orders():
-        # Find out href link to enter Open Orders
-        open_orders = driver.find_element(By.ID, "js-tab-orders-repls").get_attribute('href')
-        # print(open_orders)
-        time.sleep(3)
+    # Find out href link to enter Open Orders
+    open_orders = driver.find_element(By.ID, "js-tab-orders-repls").get_attribute('href')
+    # print(open_orders)
+    time.sleep(3)
 
-        # inside chat
-        driver.get(url=open_orders)
-        time.sleep(3)
+    # inside chat
+    driver.get(url=open_orders)
+    time.sleep(3)
 
-        # Returning info from Open Orders
-        return get_info("-- Открытые ордера --")
+    # Returning info from Open Orders
+    return get_info("-- Открытые ордера --")
+
+
+def working_orders():
+    # Find out href link to enter Working Orders
+    working_orders = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/div[1]/div/a[2]").get_attribute('href')
+    # print(working_orders)
+    time.sleep(3)
+
+    # inside chat
+    driver.get(url=working_orders)
+    time.sleep(3)
+
+    # Returning info about Request Orders
+    return get_info("-- В работе --")
+

@@ -46,6 +46,7 @@ def telegram_bot(token):
 
                 # WORKING ORDERS Section
                 working_temp = working_orders()
+
                 if working_temp == []:
                     bot.send_message(message.chat.id, "-- Нет ордеров: -- В РАБОТЕ --")
                     print("-- Нет ордеров: -- В РАБОТЕ --")
@@ -65,6 +66,7 @@ def telegram_bot(token):
                         # Text for searching in youtube
                         bot.send_message(message.chat.id, f"{search_working}")
                         print(search_working)
+
 
             except Exception as ex:
                 print(ex)

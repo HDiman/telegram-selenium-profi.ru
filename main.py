@@ -29,7 +29,12 @@ def telegram_bot(token):
                     print("-- Нет ордеров: -- ОТКРЫТЫЕ --")
                 else:
                     for n in range(len(open_temp)):
+
+                        # Text for search in Youtube
                         search_open = open_temp[n]['марка:'] + " " + open_temp[n]['проблема:']
+                        search_open = search_open.split('.')[0]
+
+                        # Taking all text about an order in one message
                         open_temp_2 = list(open_temp[n].items())
                         open_temp_3 = ''
                         for item in open_temp_2:
@@ -52,7 +57,11 @@ def telegram_bot(token):
                     print("-- Нет ордеров: -- В РАБОТЕ --")
                 else:
                     for n in range(len(working_temp)):
+                        # Text for search in Youtube
                         search_working = working_temp[n]['марка:'] + " " + working_temp[n]['проблема:']
+                        search_working = search_working.split('.')[0]
+
+                        # Taking all text about an order in one message
                         working_temp_2 = list(working_temp[n].items())
                         working_temp_3 = ''
                         for item in working_temp_2:

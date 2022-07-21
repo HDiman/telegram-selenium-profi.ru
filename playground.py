@@ -133,43 +133,56 @@
 # print(str_line)
 
 
-order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
-order_1 = order
-# print(order_1)
+# order = [{'ордер': '-- Открытые ордера --', 'клиент': 'Алексей', 'заказ от': '5 часов назад', 'адрес': 'Дмитровский (Московская область, Дмитровский городской округ, СНТ Фрегат, 79)', 'тема': 'Ремонт стиральной машины bosch maxx5', 'проблема': 'Не вращает барабан.\nМарка: Bosch.\nМодель: Maxx5.\nМашина работает полностью, но барабан перестал крутится.'}]
+# order_1 = order
+# # print(order_1)
+#
+# problem = order[0]['проблема']
+# split_problem = problem.split('\n')
+#
+# problem_list = []
+# for item in split_problem:
+#     split_item = item.split(' ')
+#     if 'Марка:' in split_item:
+#         order[0]['марка'] = split_item[1].split('.')[0] # split word from '.'
+#     elif 'Модель:' in split_item:
+#         order[0]['модель'] = split_item[1].split('.')[0] # split word from '.'
+#     else:
+#         problem_list.append(item)
+#
+# order[0]['проблема'] = ' '.join(problem_list)
+# order_2 = order
+#
+# # print(order_2)
+#
+# # if order_2[0]['адрес'] in order_1[0].values():
+# #     print(order_2[0]['адрес'])
+#
+# def two_items():
+#     search_text = order_2[0]['проблема'] + " " + order_2[0]['марка'] + " " + order_2[0]['модель']
+#     # search_text = search_text.split('.')
+#     print(search_text)
+#
+#     order_3 = list(order_2[0].items())
+#     # order_4 = " ".join(order_3)
+#     print(order_3)
+#     return order_3, search_text
+#
+# two = two_items()
+#
+# print(two)
+# print(two[0])
+# print(two[1])
 
-problem = order[0]['проблема']
-split_problem = problem.split('\n')
+model = "модель: Maxx 5."
+print(model)
 
-problem_list = []
-for item in split_problem:
-    split_item = item.split(' ')
-    if 'Марка:' in split_item:
-        order[0]['марка'] = split_item[1].split('.')[0] # split word from '.'
-    elif 'Модель:' in split_item:
-        order[0]['модель'] = split_item[1].split('.')[0] # split word from '.'
+model_2 = model.split(" ")
+model_3 = ""
+for i in range(len(model_2)):
+    if model_2[i] == 'модель:':
+        pass
     else:
-        problem_list.append(item)
-
-order[0]['проблема'] = ' '.join(problem_list)
-order_2 = order
-
-# print(order_2)
-
-# if order_2[0]['адрес'] in order_1[0].values():
-#     print(order_2[0]['адрес'])
-
-def two_items():
-    search_text = order_2[0]['проблема'] + " " + order_2[0]['марка'] + " " + order_2[0]['модель']
-    # search_text = search_text.split('.')
-    print(search_text)
-
-    order_3 = list(order_2[0].items())
-    # order_4 = " ".join(order_3)
-    print(order_3)
-    return order_3, search_text
-
-two = two_items()
-
-print(two)
-print(two[0])
-print(two[1])
+        model_3 = model_3 + " " + model_2[i]
+model_3 = model_3.split('.')[0]
+print(model_3)

@@ -40,7 +40,11 @@ def get_info(order_name):
                 if 'Марка:' in split_item:
                     order_list[n]['марка:'] = split_item[1].split('.')[0] # split word from '.'
                 elif 'Модель:' in split_item:
-                    order_list[n]['марка:'] = order_list[n]['марка:'] + " " + split_item[1].split('.')[0] # split word from '.'
+                    # Adding all text of Model without dot '.'
+                    for i in range(len(split_item)):
+                        if split_item[i] != 'Модель:':
+                            order_list[n]['марка:'] = order_list[n]['марка:'] + " " + split_item[i]
+                    order_list[n]['марка:'] = order_list[n]['марка:'].split('.')[0]
                 else:
                     problem_list.append(item)
 
